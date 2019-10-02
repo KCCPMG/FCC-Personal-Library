@@ -55,7 +55,7 @@ module.exports = function (app) {
     
     .post(function (req, res){
       var project = req.params.project;
-      // console.log('clicked');
+      console.log('clicked');
       // console.log(req.params);
     })
     
