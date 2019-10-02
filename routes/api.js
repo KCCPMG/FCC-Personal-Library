@@ -15,7 +15,10 @@ var mongoose = require('mongoose');
 
 const CONNECTION_STRING = process.env.DB; //MongoClient.connect(CONNECTION_STRING, function(err, db) {});
 
-const db = mongoose.connect(CONNECTION_STRING, {useNewUrlParser: true})
+const db = mongoose.connect(CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true}, function() {
+  console.log("They're connected!");
+  console.log(db);
+})
 
 
 module.exports = function (app) {
