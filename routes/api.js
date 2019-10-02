@@ -15,6 +15,9 @@ var mongoose = require('mongoose');
 
 const CONNECTION_STRING = process.env.DB; //MongoClient.connect(CONNECTION_STRING, function(err, db) {});
 
+const db = mongoose.connect(CONNECTION_STRING, {useNewUrlParser: true})
+
+
 module.exports = function (app) {
 
   app.route('/api/issues/:project')
