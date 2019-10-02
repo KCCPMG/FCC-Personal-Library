@@ -23,7 +23,7 @@ mongoose.connect(CONNECTION_STRING, {
   console.log("They're connected!");
 })
 
-const db = mongoose.connection;
+const db = mongoose.connection.Issues;
 
 // Create schema
 var issueSchema = new mongoose.Schema({
