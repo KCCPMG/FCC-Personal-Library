@@ -45,7 +45,7 @@ var issueSchema = new mongoose.Schema({
   collection: 'issues'
 })
 
-var issue = mongoose.model(issueSchema);
+var Issue = mongoose.model('issue', issueSchema);
 
 
 module.exports = function (app) {
@@ -60,7 +60,6 @@ module.exports = function (app) {
     })
     
     .post(function (req, res){
-      console.log(test);
       var project = req.params.project;
       console.log('clicked');
       console.log(req.params);
@@ -71,10 +70,13 @@ module.exports = function (app) {
       var createdBy = req.body.created_by
       var assignedTo = req.body.assigned_to
       var statusText = req.body.status_text
-      db.findOne({title: title}, function(err, match) {
+      Issue.findOne({title: title}, function(err, match) {
         if (err) console.log('Not Found');
-        if (match) console.log (match.text);
-        else console.log('No match');
+        else {
+          if (match) console.log (match.text);
+          else console.log('No match');    
+        }
+        
       })
     })
     
