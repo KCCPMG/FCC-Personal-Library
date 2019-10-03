@@ -23,7 +23,7 @@ mongoose.connect(CONNECTION_STRING, {
   console.log("They're connected!");
 })
 
-
+const db = mongoose.connection;
 
 // Create schema
 var issueSchema = new mongoose.Schema({
@@ -41,14 +41,16 @@ var issueSchema = new mongoose.Schema({
   }, 
   assignedTo: String, 
   statusText: String
+}, {
+  collection: 'issues'
 })
 
-var test = 5;
+var issue = mongoose.model(issueSchema);
 
 
 module.exports = function (app) {
   
-  const db = mongoose.connection.Issues;
+  
 
   app.route('/api/issues/:project')
   
@@ -69,11 +71,11 @@ module.exports = function (app) {
       var createdBy = req.body.created_by
       var assignedTo = req.body.assigned_to
       var statusText = req.body.status_text
-      // db.findOne({title: title}, function(err, match) {
-      //   if (err) console.log('Not Found');
-      //   if (match) console.log (match.text);
-      //   else console.log('No match');
-      // })
+      db.findOne({title: title}, function(err, match) {
+        if (err) console.log('Not Found');
+        if (match) console.log (match.text);
+        else console.log('No match');
+      })
     })
     
     .put(function (req, res){
