@@ -75,7 +75,9 @@ module.exports = function (app) {
         else {
           if (match) console.log (match.text);
           else {
-            let new
+            let new_issue = new Issue({
+              title, text, createdBy, assignedTo, statusText
+            });
           }    
         }
         
