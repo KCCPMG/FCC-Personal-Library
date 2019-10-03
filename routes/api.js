@@ -27,7 +27,7 @@ const db = mongoose.connection.Issues;
 
 // Create schema
 var issueSchema = new mongoose.Schema({
-  Title : {
+  title : {
     type: String, 
     required: true
   }, 
@@ -56,7 +56,17 @@ module.exports = function (app) {
     .post(function (req, res){
       var project = req.params.project;
       console.log('clicked');
-      // console.log(req.params);
+      console.log(req.params);
+      console.log(req.body);
+
+      var title = req.body.issue_title;
+      var text = req.body.issue_text
+      var createdBy = req.body.created_by
+      var assignedTo = req.body.assigned_to
+      var statusText = req.body.status_text
+      mongoose.findOne({title: title}, function(err, match) {
+        
+      })
     })
     
     .put(function (req, res){
