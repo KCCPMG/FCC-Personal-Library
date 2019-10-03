@@ -64,8 +64,10 @@ module.exports = function (app) {
       var createdBy = req.body.created_by
       var assignedTo = req.body.assigned_to
       var statusText = req.body.status_text
-      mongoose.findOne({title: title}, function(err, match) {
-        
+      db.findOne({title: title}, function(err, match) {
+        if (err) console.log('Not Found');
+        if (match) console.log (match.text);
+        else console.log('No match');
       })
     })
     
