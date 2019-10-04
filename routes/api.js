@@ -151,10 +151,19 @@ module.exports = function (app) {
       if(!req.body._id) res.send('_id error');
       
       console.log(req.body._id);
-      Issue.findByIdAndDelete(req.body._id, function(err, issue) {
-        if (err) res.send('could not delete ' + req.body._id);
-        else res.send('deleted ' + issue._id);
+    
+      Issue.findById(req.body._id, function(err, issues){
+        console.log(issues.length);
+        if (issues.length === 1) {
+          Issue.findByIdAndDelete(req.body._id, function(err, issue) {
+          if (err) res.send('could not delete ' + req.body._id);
+            else res.send('deleted ' + issue._id);
+          })
+        } else {
+          res.send('could not delete ' + req.body._id);
+        }
       })
+      
       
     })
   
