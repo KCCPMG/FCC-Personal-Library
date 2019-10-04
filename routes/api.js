@@ -68,22 +68,24 @@ module.exports = function (app) {
     
     .post(function (req, res){
       var project = req.params.project;
-      console.log('clicked');
-      console.log(req.params);
-      console.log(req.body);
+      // console.log('clicked');
+      // console.log(req.params);
+      // console.log(req.body);
 
       var title = req.body.issue_title;
-      var text = req.body.issue_text
-      var createdBy = req.body.created_by
-      var assignedTo = req.body.assigned_to
-      var statusText = req.body.status_text
+      var text = req.body.issue_text;
+      var createdBy = req.body.created_by;
+      var assignedTo = req.body.assigned_to;
+      var statusText = req.body.status_text;
+      var createdOn = "date";
+      var updatedOn = null;
+      var open = true;
 
       let new_issue = new Issue({
-        title, text, createdBy, assignedTo, statusText
+        title, text, createdBy, assignedTo, statusText, createdOn, updatedOn, open
       });
     
       new_issue.save(function(){
-        console.log('here comes the butt!');
         console.log(new_issue);
       });
               
