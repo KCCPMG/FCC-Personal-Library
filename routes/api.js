@@ -152,21 +152,27 @@ module.exports = function (app) {
       
       console.log(req.body._id);
     
-      Issue.findById(req.body._id, function(err, issues){
-        if (err) {
-          console.log('PROBLEM')
-          res.send('could not delete ' + req.body._id);
-        }
-        console.log(issues.length);
-        if (issues.length === 1) {
-          Issue.findByIdAndDelete(req.body._id, function(err, issue) {
-          if (err) res.send('could not delete ' + req.body._id);
-            else res.send('deleted ' + issue._id);
-          })
-        } else {
-          res.send('could not delete ' + req.body._id);
-        }
+      Issue.findByIdAndDelete(req.body._id, function(err, issue) {
+        if (err || issue === null) res.send('could not delete ' + req.body._id);
+        else res.send('deleted ' + issue._id);
       })
+    
+//       Issue.findById(req.body._id, function(err, issues){
+//         if (err || issues === null) {
+//           res.send('could not delete ' + req.body._id);
+//         } else {
+//           console.log(issues.length);
+//           if (issues.length === 1) {
+//             Issue.findByIdAndDelete(req.body._id, function(err, issue) {
+//             if (err) res.send('could not delete ' + req.body._id);
+//               else res.send('deleted ' + issue._id);
+//             })
+//           } else {
+//             res.send('could not delete ' + req.body._id);
+//           }  
+//         }
+        
+//       })
       
       
     })
