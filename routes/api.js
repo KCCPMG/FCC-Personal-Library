@@ -117,7 +117,7 @@ module.exports = function (app) {
             if (statusText) issue.statusText = statusText;
             if (toClose) issue.open = false;
             issue.updatedOn = updatedOn;
-            
+            console.log('updated ' + req.body._id);
           } else {
             console.log('could not update ' + req.body._id);
             res.send('could not update ' + req.body._id)
