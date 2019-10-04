@@ -47,7 +47,10 @@ var issueSchema = new mongoose.Schema({
     required: true
   }, 
   assignedTo: String, 
-  statusText: String
+  statusText: String,
+  createdOn: Date,
+  updatedOn: Date,
+  open: Boolean
 }, {
   collection: 'Issues'
 })
@@ -77,7 +80,7 @@ module.exports = function (app) {
       var createdBy = req.body.created_by;
       var assignedTo = req.body.assigned_to;
       var statusText = req.body.status_text;
-      var createdOn = "date";
+      var createdOn = new Date;
       var updatedOn = null;
       var open = true;
 
