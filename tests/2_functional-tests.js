@@ -30,10 +30,14 @@ suite('Functional Tests', function() {
         .end(function(err, res){
           console.log(res.status);
           assert.equal(res.status, 200, "bad connection");
-          assert.equal(5, 4, "blarp")
           
           //fill me in too!
-          assert.isOk(res.title, "missing title");
+          assert.isOk(res.body.title, "missing title");
+          assert.isOk(res.body.text, "missing text");
+          assert.isOk(res.body.createdBy, "missing createdBy");
+          assert.isOk(res.body.assignedTo, "missing assignedTo");
+          assert.isOk(res.body.statusText, "missing statusText");
+          assert.isOk(res.body.createdOn, "missing createdOn");
           
           done();
         });
