@@ -134,11 +134,12 @@ module.exports = function (app) {
         else console.log('Deleted ' + issue.title);
       })
       
-    });
+    })
   
-  .get(function (req, res){
-    var project = req.params.project;
+    .get(function (req, res){
+      var project = req.params.project;
+    
 
-  })
+    })
     
 };
