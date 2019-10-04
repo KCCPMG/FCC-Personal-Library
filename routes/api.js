@@ -104,15 +104,12 @@ module.exports = function (app) {
       var assignedTo = req.body.assigned_to;
       var statusText = req.body.status_text;
     
-      Issue.findOne({_id: req.body._id}, function(err, match) {
+      Issue.findOne({_id: req.body._id}, function(err, issue) {
         if (err) console.log('could not update ' + req.body._id);
         else {
-          if (match) console.log (match.text);
+          if (issue) console.log (issue.text);
           else {
-            let new_issue = new Issue({
-              title, text, createdBy, assignedTo, statusText
-            });
-            res.json(new_issue);
+            console.log('could not update ' + req.body._id);
           }    
         }
       });
