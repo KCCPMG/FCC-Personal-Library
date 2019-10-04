@@ -88,8 +88,7 @@ module.exports = function (app) {
       new_issue.save(function(){
         console.log(new_issue);
         // Send back
-        Issue.findOneById(new_issue._id, function(err, result) {
-          console.log(result);
+        Issue.findById(new_issue._id, function(err, result) {
           res.send(result);
         })
       });
@@ -123,6 +122,7 @@ module.exports = function (app) {
             issue.updatedOn = updatedOn;
             issue.save();
             console.log('updated ' + req.body._id);
+            res.send('successfully updated');
           } else {
             console.log('could not update ' + req.body._id);
             res.send('could not update ' + req.body._id)
