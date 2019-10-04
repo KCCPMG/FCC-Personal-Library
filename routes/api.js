@@ -76,7 +76,8 @@ module.exports = function (app) {
       });
     
       new_issue.save(function(){
-        
+        console.log('here comes the butt!');
+        console.log(new_issue);
       });
               
       
@@ -100,7 +101,7 @@ module.exports = function (app) {
             });
           }    
         }
-      
+      });
     })
     
     .delete(function (req, res){
