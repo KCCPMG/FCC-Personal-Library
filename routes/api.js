@@ -130,12 +130,14 @@ module.exports = function (app) {
     
     .delete(function (req, res){
       var project = req.params.project;
+      console.log(project);
+      console.log(req.params);
       
-      console.log(req.body._id);
-      Issue.findByIdAndDelete(req.body._id, function(err, issue) {
-        if (err) console.long(err);
-        else console.log('Deleted ' + issue.title);
-      })
+      // console.log(req.body._id);
+      // Issue.findByIdAndDelete(req.body._id, function(err, issue) {
+      //   if (err) console.long(err);
+      //   else console.log('Deleted ' + issue.title);
+      // })
       
     });
     
