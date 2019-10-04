@@ -86,7 +86,7 @@ module.exports = function (app) {
       });
     
       new_issue.save(function(){
-        console.log(new_issue);
+        // console.log(new_issue);
         // Send back
         Issue.findById(new_issue._id, function(err, result) {
           res.send(result);

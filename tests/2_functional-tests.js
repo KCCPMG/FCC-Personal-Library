@@ -28,17 +28,19 @@ suite('Functional Tests', function() {
           status_text: 'In QA'
         })
         .end(function(err, res){
+          console.log(res.status);
           assert.equal(res.status, 200, "bad connection");
+          assert.equal(5, 4, "blarp")
           
           //fill me in too!
-         assert.isOk(res.title, "missing title");
+          assert.isOk(res.title, "missing title");
           
           done();
         });
       });
       
       test('Required fields filled in', function(done) {
-        
+        done();
       });
       
       test('Missing required fields', function(done) {
