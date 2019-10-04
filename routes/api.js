@@ -116,13 +116,18 @@ module.exports = function (app) {
             if (title) issue.title = title;
             if (text) issue.text = text;
             if (createdBy) issue.createdBy = createdBy;
-            if (assignedTo) issue.assignedTo = issue;
+            if (assignedTo) issue.assignedTo = assignedTo;
             if (statusText) issue.statusText = statusText;
             if (toClose) issue.open = false;
-            issue.updatedOn = updatedOn;
-            issue.save();
-            console.log('updated ' + req.body._id);
-            res.send('successfully updated');
+            if (!title && !text && !createdBy && !assignedTo && !statusText && toClose) {
+              res.send('no updated field sent');
+            }
+            else {
+              issue.updatedOn = updatedOn;
+              issue.save();
+              console.log('updated ' + req.body._id);
+              res.send('successfully updated');
+            } 
           } else {
             console.log('could not update ' + req.body._id);
             res.send('could not update ' + req.body._id)
