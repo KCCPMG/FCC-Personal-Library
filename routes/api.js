@@ -70,6 +70,26 @@ module.exports = function (app) {
       var createdBy = req.body.created_by
       var assignedTo = req.body.assigned_to
       var statusText = req.body.status_text
+
+      let new_issue = new Issue({
+        title, text, createdBy, assignedTo, statusText
+      });
+    
+      new_issue.save(function(){
+        
+      });
+              
+      
+    })
+    
+    .put(function (req, res){
+      var project = req.params.project;
+    
+      var title = req.body.issue_title;
+      var text = req.body.issue_text
+      var createdBy = req.body.created_by
+      var assignedTo = req.body.assigned_to
+      var statusText = req.body.status_text
       Issue.findOne({title: title}, function(err, match) {
         if (err) console.log('Not Found');
         else {
@@ -80,12 +100,6 @@ module.exports = function (app) {
             });
           }    
         }
-        
-      })
-    })
-    
-    .put(function (req, res){
-      var project = req.params.project;
       
     })
     
