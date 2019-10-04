@@ -25,12 +25,12 @@ mongoose.connect(CONNECTION_STRING, {
 });
 
 const db = mongoose.connection;
+db.on('error', function(error) {
+  console.error.bind(console, 'connection error: ');
+});
 db.once('open', function(){
   console.log('They\'re connected!');
 });
-db.on('error', function() {
-  
-})
 
 // Create schema
 var issueSchema = new mongoose.Schema({
@@ -49,7 +49,7 @@ var issueSchema = new mongoose.Schema({
   assignedTo: String, 
   statusText: String
 }, {
-  collection: 'issues'
+  collection: 'Issues'
 })
 
 var Issue = mongoose.model('issue', issueSchema);
@@ -94,10 +94,11 @@ module.exports = function (app) {
       var project = req.params.project;
     
       var title = req.body.issue_title;
-      var text = req.body.issue_text
-      var createdBy = req.body.created_by
-      var assignedTo = req.body.assigned_to
-      var statusText = req.body.status_text
+      var text = req.body.issue_text;
+      var createdBy = req.body.created_by;
+      var assignedTo = req.body.assigned_to;
+      var statusText = req.body.status_text;
+    
       Issue.findOne({title: title}, function(err, match) {
         if (err) console.log('Not Found');
         else {
