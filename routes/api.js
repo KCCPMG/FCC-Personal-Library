@@ -147,11 +147,13 @@ module.exports = function (app) {
     .delete(function (req, res){
       //If no _id is sent return '_id error', success: 'deleted '+_id, failed: 'could not delete '+_id.
       var project = req.params.project;
+    
+      if(!req.body._id) res.send('_id error');
       
       console.log(req.body._id);
       Issue.findByIdAndDelete(req.body._id, function(err, issue) {
-        if (err) console.long(err);
-        else console.log('Deleted ' + issue.title);
+        if (err) res.send('could not delete ' + req.body._id);
+        else res.send('deleted ' + issue._id);
       })
       
     })
