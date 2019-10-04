@@ -28,10 +28,10 @@ suite('Functional Tests', function() {
           status_text: 'In QA'
         })
         .end(function(err, res){
-          assert.equal(res.status, 200);
+          assert.equal(res.status, 200, "bad connection");
           
           //fill me in too!
-         assert.isOk()
+         assert.isOk(res.title, "missing title");
           
           done();
         });
