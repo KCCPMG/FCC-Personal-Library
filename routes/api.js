@@ -99,8 +99,8 @@ module.exports = function (app) {
       var assignedTo = req.body.assigned_to;
       var statusText = req.body.status_text;
     
-      Issue.findOne({title: title}, function(err, match) {
-        if (err) console.log('Not Found');
+      Issue.findOne({_id: req.body._id}, function(err, match) {
+        if (err) console.log('could not update ' + req.body._id);
         else {
           if (match) console.log (match.text);
           else {
