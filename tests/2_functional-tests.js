@@ -31,6 +31,7 @@ suite('Functional Tests', function() {
           assert.equal(res.status, 200);
           
           //fill me in too!
+         assert.isOk()
           
           done();
         });
