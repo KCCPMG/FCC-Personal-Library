@@ -103,13 +103,24 @@ module.exports = function (app) {
       var createdBy = req.body.created_by;
       var assignedTo = req.body.assigned_to;
       var statusText = req.body.status_text;
+      var toClose = req.body.open;
+      var updatedOn = new Date();
     
       Issue.findOne({_id: req.body._id}, function(err, issue) {
         if (err) console.log('could not update ' + req.body._id);
         else {
-          if (issue) console.log (issue.text);
-          else {
+          if (issue) {
+            if (title) issue.title = title;
+            if (text) issue.text = createdBy;
+            if (createdBy) issue.createdBy = createdBy;
+            if (assignedTo) issue.assignedTo = issue;
+            if (statusText) issue.statusText = statusText;
+            if (toClose) issue.open = false;
+            issue.updatedOn = updatedOn;
+            
+          } else {
             console.log('could not update ' + req.body._id);
+            res.send('could not update ' + req.body._id)
           }    
         }
       });
