@@ -19,11 +19,18 @@ mongoose.connect(CONNECTION_STRING, {
   useNewUrlParser: true, 
   dbName: 'IssueTracking',
   useUnifiedTopology: true
-}, function() {
-  console.log("They're connected!");
-})
+// }, function() {
+//   console.log("They're connected!");
+// })
+});
 
 const db = mongoose.connection;
+db.once('open', function(){
+  console.log('They\'re connected!');
+});
+db.on('error', function() {
+  
+})
 
 // Create schema
 var issueSchema = new mongoose.Schema({
@@ -99,6 +106,7 @@ module.exports = function (app) {
             let new_issue = new Issue({
               title, text, createdBy, assignedTo, statusText
             });
+            res.json(new_issue);
           }    
         }
       });
