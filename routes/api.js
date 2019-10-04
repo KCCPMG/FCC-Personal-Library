@@ -145,6 +145,7 @@ module.exports = function (app) {
     })
     
     .delete(function (req, res){
+      //If no _id is sent return '_id error', success: 'deleted '+_id, failed: 'could not delete '+_id.
       var project = req.params.project;
       
       console.log(req.body._id);
