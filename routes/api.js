@@ -80,7 +80,7 @@ module.exports = function (app) {
       var createdBy = req.body.created_by;
       var assignedTo = req.body.assigned_to;
       var statusText = req.body.status_text;
-      var createdOn = new Date;
+      var createdOn = new Date();
       var updatedOn = null;
       var open = true;
 
