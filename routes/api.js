@@ -108,6 +108,14 @@ module.exports = function (app) {
       var statusText = req.body.status_text;
       var toClose = req.body.open;
       var updatedOn = new Date();
+      
+      console.log(Boolean(title));
+      console.log(Boolean(text));
+      console.log(Boolean(createdBy));
+      console.log(Boolean(assignedTo));
+      console.log(Boolean(statusText));
+      console.log(Boolean(toClose));
+
     
       Issue.findOne({_id: req.body._id}, function(err, issue) {
         if (err) console.log('could not update ' + req.body._id);
@@ -119,7 +127,7 @@ module.exports = function (app) {
             if (assignedTo) issue.assignedTo = assignedTo;
             if (statusText) issue.statusText = statusText;
             if (toClose) issue.open = false;
-            if (!title && !text && !createdBy && !assignedTo && !statusText && toClose) {
+            if (!title && !text && !createdBy && !assignedTo && !statusText && !toClose) {
               res.send('no updated field sent');
             }
             else {
