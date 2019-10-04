@@ -97,6 +97,7 @@ module.exports = function (app) {
     
     .put(function (req, res){
       var project = req.params.project;
+      console.log(req.params.project);
     
       var title = req.body.issue_title;
       var text = req.body.issue_text;
@@ -111,12 +112,13 @@ module.exports = function (app) {
         else {
           if (issue) {
             if (title) issue.title = title;
-            if (text) issue.text = createdBy;
+            if (text) issue.text = text;
             if (createdBy) issue.createdBy = createdBy;
             if (assignedTo) issue.assignedTo = issue;
             if (statusText) issue.statusText = statusText;
             if (toClose) issue.open = false;
             issue.updatedOn = updatedOn;
+            issue.save();
             console.log('updated ' + req.body._id);
           } else {
             console.log('could not update ' + req.body._id);
@@ -128,6 +130,11 @@ module.exports = function (app) {
     
     .delete(function (req, res){
       var project = req.params.project;
+    
+      Issue.findByIdAndDelete(req.body._id, function(err, issue) {
+        if (err) console.long(err);
+        
+      })
       
     });
     
