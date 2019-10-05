@@ -70,7 +70,9 @@ suite('Functional Tests', function() {
           .end(function(err, res) {
             assert.equal(res.status, 200);
             console.log(res.body);
-            assert.equal(res.body, "Missing required fields")
+            console.log(res.text);
+            console.log(res.text === "\"Missing required fields\"");
+            assert.equal(res.text, '"Missing required fields"')
           })
       });
       
