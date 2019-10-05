@@ -52,17 +52,26 @@ suite('Functional Tests', function() {
           created_by: 'Functional Test - Required fields filled in',
         })
         .end(function(err, res) {
-         assert.equal(res.status, 200);
-         assert.isOk(res.body.title, 'title error');
-         assert.isOk(res.body.text, 'text error');
-         assert.isOk(res.body.createdBy, 'createdBy error');
-         assert.isOk(res.body.createdOn, 'createdOn error');
-         
-         done();
+           assert.equal(res.status, 200);
+           assert.isOk(res.body.title, 'title error');
+           assert.isOk(res.body.text, 'text error');
+           assert.isOk(res.body.createdBy, 'createdBy error');
+           assert.isOk(res.body.createdOn, 'createdOn error');
+
+           done();
+        });
       });
       
       test('Missing required fields', function(done) {
-        
+        chai.request(server)
+          .post('/api/issues/test')
+          .send({
+            issue_title: 'Title'
+          })
+          .end(function(err, res) {
+            assert.equal(res.status, 200);
+            assert.equal(res.body.text === "Missing required fields")
+          })
       });
       
     });
