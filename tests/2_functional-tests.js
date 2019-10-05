@@ -28,7 +28,6 @@ suite('Functional Tests', function() {
           status_text: 'In QA'
         })
         .end(function(err, res){
-          console.log(res.status);
           assert.equal(res.status, 200, "bad connection");
           
           //fill me in too!
@@ -70,8 +69,8 @@ suite('Functional Tests', function() {
           })
           .end(function(err, res) {
             assert.equal(res.status, 200);
-            console.log(res);
-            assert.equal(res.text === "Missing required fields")
+            console.log(res.body);
+            assert.equal(res.body, "Missing required fields")
           })
       });
       

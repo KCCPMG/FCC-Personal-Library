@@ -83,7 +83,7 @@ module.exports = function (app) {
 
       if (!title || !text || !createdBy) {
         console.log("From Post: Missing required fields")
-        res.send("Missing required fields");
+        res.json("Missing required fields");
       }
       else {
         let new_issue = new Issue({
