@@ -81,17 +81,22 @@ module.exports = function (app) {
       var updatedOn = null;
       var open = true;
 
-      let new_issue = new Issue({
-        title, text, createdBy, assignedTo, statusText, createdOn, updatedOn, open
-      });
-    
-      new_issue.save(function(){
-        // console.log(new_issue);
-        // Send back
-        Issue.findById(new_issue._id, function(err, result) {
-          res.send(result);
-        })
-      });
+      if (!title || !text || !createdBy) {
+        console.log("From Post: Missing required fields")
+        res.send("Missing required fields");
+      }
+      else {
+        let new_issue = new Issue({
+          title, text, createdBy, assignedTo, statusText, createdOn, updatedOn, open
+        });
+
+        new_issue.save(function(){
+          Issue.findById(new_issue._id, function(err, result) {
+            res.send(result);
+          })
+        });
+      }
+      
 
               
       
