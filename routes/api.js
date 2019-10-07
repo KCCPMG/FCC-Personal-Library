@@ -192,10 +192,29 @@ module.exports = function (app) {
       var statusText = req.body.status_text;
       var toClose = req.body.open;
     
+      var map = {
+        issue_title: "title",
+        issue_text: "text",
+        created_by: "createdBy",
+        assigned_to: "assignedTo",
+        status_text: "statusText",
+        open: "toClose"
+      }
+      
+      var searchObj = {};
+      
+      for (let prop in req.body) {
+        if (map[prop] !== undefined) {
+          searchObj[map[prop]] = req.body.prop;
+        }
+      }
     
-      for (req.body)
     
-      Issue.find()
+      // for (req.body)
+    
+      Issue.find(searchObj, function(err, results){
+        
+      })
     
 
     })
