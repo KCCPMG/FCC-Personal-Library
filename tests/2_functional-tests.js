@@ -80,7 +80,12 @@ suite('Functional Tests', function() {
     suite('PUT /api/issues/{project} => text', function() {
       
       test('No body', function(done) {
-        
+        chai.request(server)
+          .put('/api/issues/test')
+          .send({})
+          .end(function(err, res) {
+            
+          })
       });
       
       test('One field to update', function(done) {
