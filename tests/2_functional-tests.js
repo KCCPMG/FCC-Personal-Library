@@ -90,17 +90,34 @@ suite('Functional Tests', function() {
           })
       });
       
+      test('No fields to update', function(done){
+        chai.request(server)
+          .put('api/issues/test')
+          .send({
+            _id: '5d97b8c83d3f02296f58e2c6'
+          })
+          .end(function(err, res) {
+            if (err) console.log(err);
+            else {
+              assert.equal(res.text, 'no updated field sent');
+              done();
+            }
+        })
+      })
+      
       test('One field to update', function(done) {
         chai.request(server)
           .put('/api/issues/test')
           .send({
-            _id: 5d97b8c83d3f02296f58e2c6,
-            
+            _id: '5d97b8c83d3f02296f58e2c6',
+            assignedTo: 'BUNGABUNGA'          
           })
-          .end(function (err, res) {
+          .end(function(err, res) {
             if (err) console.log(err);
             assert.equal(res.status, 200);
-            assert.equal(res.body.assignedTo, )
+            // console.log(res.body);
+            assert.equal(res.text, 'successfully updated');
+            done();
           })
       });
       

@@ -132,10 +132,10 @@ module.exports = function (app) {
             if (assignedTo) issue.assignedTo = assignedTo;
             if (statusText) issue.statusText = statusText;
             if (toClose) issue.open = false;
+            var updated
             if (!title && !text && !createdBy && !assignedTo && !statusText && !toClose) {
               res.send('no updated field sent');
-            }
-            else {
+            } else {
               issue.updatedOn = updatedOn;
               issue.save();
               // console.log('updated ' + req.body._id);
