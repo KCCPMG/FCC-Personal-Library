@@ -190,7 +190,7 @@ module.exports = function (app) {
       var createdBy = req.body.created_by;
       var assignedTo = req.body.assigned_to;
       var statusText = req.body.status_text;
-      var toClose = req.body.open;
+      var open = req.body.open;
     
       var mapToModel = {
         issue_title: "title",
@@ -198,16 +198,17 @@ module.exports = function (app) {
         created_by: "createdBy",
         assigned_to: "assignedTo",
         status_text: "statusText",
-        open: "toClose"
+        open: "open"
       }
       
       var mapToHtml = {
+        _id: "_id",
         title: "issue_title",
         text: "issue_text",
         createdBy: "created_by",
         assignedTo: "assigned_to",
         statusText: "status_text",
-        toClose: "open"
+        open: "open"
       }
       
       var searchObj = {};
@@ -217,7 +218,7 @@ module.exports = function (app) {
           searchObj[mapToModel[prop]] = req.body.prop;
         }
       }
-      console.log(searchObj);
+      console.log("Search object :", searchObj);
     
     
       // for (req.body)
@@ -225,19 +226,26 @@ module.exports = function (app) {
       Issue.find(searchObj, function(err, results){
         if (err) console.log(err);
         else {
-          var htmlResults = [];
+          
+          
+          
           
           // Testing block
-          let htmlResult = {}
+          console.log(results.length);
+          let htmlResult={};
           
-          // for (let prop in results[0]) {
-          //   if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = results[0][prop];
-          // }
-          // console.log("model result: ", results[0])
+          for (let prop of Object.keys(results[0])) {
+            console.log(prop);
+            if (mapToHtml[prop] !== undefined) {
+              htmlResult[mapToHtml[prop]] = results[0][prop];
+            }
+            console.log(htmlResult);
+          }
+          console.log("model result: ", results[0])
           console.log("htmlResult: ", htmlResult)
           
           
-          
+          // var htmlResults = [];
           // for (let modelResult in results) {
           //   let htmlResult = {};
           //   for (let prop in modelResult) {
