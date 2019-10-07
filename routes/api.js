@@ -217,7 +217,7 @@ module.exports = function (app) {
           searchObj[mapToModel[prop]] = req.body.prop;
         }
       }
-      
+      console.log(searchObj);
     
     
       // for (req.body)
@@ -226,7 +226,7 @@ module.exports = function (app) {
         if (err) console.log(err);
         else {
           var htmlResults = [];
-          console.log(results[0])
+          console.log("model result: ", results[0])
           for (let modelResult in results) {
             let htmlResult = {};
             for (let prop in modelResult) {
@@ -234,6 +234,7 @@ module.exports = function (app) {
             }
             htmlResults.push(htmlResult);
           }
+          console.log("htmlResult: ", htmlResults[0])
           res.json(htmlResults);
         }
       })
