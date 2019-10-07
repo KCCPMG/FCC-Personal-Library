@@ -121,7 +121,20 @@ suite('Functional Tests', function() {
       });
       
       test('Multiple fields to update', function(done) {
-        
+        chai.request(server)
+          .put('/api/issues/test')
+          .send({
+            _id: '5d97b8c83d3f02296f58e2c6',
+            assigned_to: 'AAAAIIIIEEEEEEEE',
+            status_text: 'en fuego'
+          })
+          .end(function(err, res) {
+            if (err) console.log(err);
+            assert.equal(res.status, 200);
+            console.log(res.text);
+            assert.equal(res.text, 'successfully updated');
+            done();
+          })
       });
       
     });
