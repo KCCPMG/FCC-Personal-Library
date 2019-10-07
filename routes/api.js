@@ -185,6 +185,13 @@ module.exports = function (app) {
     .get(function (req, res){
       var project = req.params.project;
     
+      var title = req.body.issue_title;
+      var text = req.body.issue_text;
+      var createdBy = req.body.created_by;
+      var assignedTo = req.body.assigned_to;
+      var statusText = req.body.status_text;
+      var toClose = req.body.open;
+    
       Issue.find()
     
 
