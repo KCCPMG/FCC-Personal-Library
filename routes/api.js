@@ -202,12 +202,12 @@ module.exports = function (app) {
       }
       
       var mapToHtml = {
-        title,
-        text,
-        createdBy,
-        assignedTo,
-        statusText,
-        toClose
+        title: "issue_title",
+        text: "issue_text",
+        createdBy: "created_by",
+        assignedTo: "assigned_to",
+        statusText: "status_text",
+        toClose: "open"
       }
       
       var searchObj = {};
