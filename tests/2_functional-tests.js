@@ -84,7 +84,10 @@ suite('Functional Tests', function() {
           .put('/api/issues/test')
           .send({})
           .end(function(err, res) {
-            
+            assert.equal(res.status, 200);
+            // assert.equal(res.text, 'Could not update ');
+            console.log(res.text);
+            done();
           })
       });
       
