@@ -192,7 +192,7 @@ module.exports = function (app) {
       var statusText = req.body.status_text;
       var toClose = req.body.open;
     
-      var map = {
+      var mapToModel = {
         issue_title: "title",
         issue_text: "text",
         created_by: "createdBy",
@@ -201,11 +201,20 @@ module.exports = function (app) {
         open: "toClose"
       }
       
+      var mapToHtml = {
+        title,
+        text,
+        createdBy,
+        assignedTo,
+        statusText,
+        toClose
+      }
+      
       var searchObj = {};
       
       for (let prop in req.body) {
-        if (map[prop] !== undefined) {
-          searchObj[map[prop]] = req.body.prop;
+        if (mapToModel[prop] !== undefined) {
+          searchObj[mapToModel[prop]] = req.body.prop;
         }
       }
     
@@ -213,7 +222,8 @@ module.exports = function (app) {
       // for (req.body)
     
       Issue.find(searchObj, function(err, results){
-        
+        if (err) console.log(err);
+        else res.json(results);
       })
     
 
