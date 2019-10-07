@@ -104,7 +104,7 @@ module.exports = function (app) {
     
     .put(function (req, res){
       var project = req.params.project;
-      console.log(req.params.project);
+      // console.log(req.params.project);
     
       var title = req.body.issue_title;
       var text = req.body.issue_text;
@@ -114,12 +114,12 @@ module.exports = function (app) {
       var toClose = req.body.open;
       var updatedOn = new Date();
       
-      console.log(Boolean(title));
-      console.log(Boolean(text));
-      console.log(Boolean(createdBy));
-      console.log(Boolean(assignedTo));
-      console.log(Boolean(statusText));
-      console.log(Boolean(toClose));
+      // console.log(Boolean(title));
+      // console.log(Boolean(text));
+      // console.log(Boolean(createdBy));
+      // console.log(Boolean(assignedTo));
+      // console.log(Boolean(statusText));
+      // console.log(Boolean(toClose));
 
     
       Issue.findOne({_id: req.body._id}, function(err, issue) {
@@ -138,11 +138,11 @@ module.exports = function (app) {
             else {
               issue.updatedOn = updatedOn;
               issue.save();
-              console.log('updated ' + req.body._id);
+              // console.log('updated ' + req.body._id);
               res.send('successfully updated');
             } 
           } else {
-            console.log('could not update ' + req.body._id);
+            // console.log('could not update ' + req.body._id);
             res.send('could not update ' + req.body._id)
           }    
         }

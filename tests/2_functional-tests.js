@@ -85,14 +85,23 @@ suite('Functional Tests', function() {
           .send({})
           .end(function(err, res) {
             assert.equal(res.status, 200);
-            // assert.equal(res.text, 'Could not update ');
-            console.log(res.text);
+            assert.equal(res.text, 'could not update undefined');
             done();
           })
       });
       
       test('One field to update', function(done) {
-        
+        chai.request(server)
+          .put('/api/issues/test')
+          .send({
+            _id: 5d97b8c83d3f02296f58e2c6,
+            
+          })
+          .end(function (err, res) {
+            if (err) console.log(err);
+            assert.equal(res.status, 200);
+            assert.equal(res.body.assignedTo, )
+          })
       });
       
       test('Multiple fields to update', function(done) {
