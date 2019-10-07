@@ -238,30 +238,30 @@ module.exports = function (app) {
           // console.log(result.toString());
           // console.log(JSON.parse(JSON.stringify(result)));
           
-          let htmlResult={};
+//           let htmlResult={};
           
-          for (let prop of Object.keys(JSON.parse(JSON.stringify(results[0])))) {
-            console.log(prop);
-            if (mapToHtml[prop] !== undefined) {
-              htmlResult[mapToHtml[prop]] = results[0][prop];
+//           for (let prop of Object.keys(JSON.parse(JSON.stringify(results[0])))) {
+//             console.log(prop);
+//             if (mapToHtml[prop] !== undefined) {
+//               htmlResult[mapToHtml[prop]] = results[0][prop];
+//             }
+//             console.log(htmlResult);
+//           }
+//           console.log("model result: ", results[0])
+//           console.log("htmlResult: ", htmlResult)
+          
+          
+          var htmlResults = [];
+          for (let modelResult of results) {
+            modelResult = JSON.parse(JSON.stringify(modelResult));
+            let htmlResult = {};
+            for (let prop in modelResult) {
+              if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = modelResult[prop];
             }
-            console.log(htmlResult);
+            htmlResults.push(htmlResult);
           }
-          console.log("model result: ", results[0])
-          console.log("htmlResult: ", htmlResult)
-          
-          
-          // var htmlResults = [];
-          // for (let modelResult of results) {
-          //   modelResult = JSON.parse(JSON.stringify(modelResult));
-          //   let htmlResult = {};
-          //   for (let prop in modelResult) {
-          //     if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = modelResult[prop];
-          //   }
-          //   htmlResults.push(htmlResult);
-          // }
-          // console.log("htmlResult: ", htmlResults[0])
-          // res.json(htmlResults);
+          console.log("htmlResult: ", htmlResults[0])
+          res.json(htmlResults);
         }
       })
     
