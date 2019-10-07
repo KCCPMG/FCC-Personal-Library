@@ -231,28 +231,29 @@ module.exports = function (app) {
           
           
           // Testing block
-          console.log(results.length);
-          let result = results[0]
-          console.log(Object.keys(result));
+          // console.log(results.length);
+          // let result = results[0]
+          // console.log(Object.keys(result));
+          // console.log(result);
+          // console.log(result.toString());
+          // console.log(JSON.parse(JSON.stringify(result)));
           
+          let htmlResult={};
           
-//           let htmlResult={};
-          
-
-          
-//           for (let prop of Object.keys(results[0])) {
-//             console.log(prop);
-//             if (mapToHtml[prop] !== undefined) {
-//               htmlResult[mapToHtml[prop]] = results[0][prop];
-//             }
-//             console.log(htmlResult);
-//           }
-//           console.log("model result: ", results[0])
-//           console.log("htmlResult: ", htmlResult)
+          for (let prop of Object.keys(JSON.parse(JSON.stringify(results[0])))) {
+            console.log(prop);
+            if (mapToHtml[prop] !== undefined) {
+              htmlResult[mapToHtml[prop]] = results[0][prop];
+            }
+            console.log(htmlResult);
+          }
+          console.log("model result: ", results[0])
+          console.log("htmlResult: ", htmlResult)
           
           
           // var htmlResults = [];
-          // for (let modelResult in results) {
+          // for (let modelResult of results) {
+          //   modelResult = JSON.parse(JSON.stringify(modelResult));
           //   let htmlResult = {};
           //   for (let prop in modelResult) {
           //     if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = modelResult[prop];
