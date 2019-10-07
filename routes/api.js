@@ -232,17 +232,23 @@ module.exports = function (app) {
           
           // Testing block
           console.log(results.length);
-          let htmlResult={};
+          let result = results[0]
+          console.log(Object.keys(result));
           
-          for (let prop of Object.keys(results[0])) {
-            console.log(prop);
-            if (mapToHtml[prop] !== undefined) {
-              htmlResult[mapToHtml[prop]] = results[0][prop];
-            }
-            console.log(htmlResult);
-          }
-          console.log("model result: ", results[0])
-          console.log("htmlResult: ", htmlResult)
+          
+//           let htmlResult={};
+          
+
+          
+//           for (let prop of Object.keys(results[0])) {
+//             console.log(prop);
+//             if (mapToHtml[prop] !== undefined) {
+//               htmlResult[mapToHtml[prop]] = results[0][prop];
+//             }
+//             console.log(htmlResult);
+//           }
+//           console.log("model result: ", results[0])
+//           console.log("htmlResult: ", htmlResult)
           
           
           // var htmlResults = [];
