@@ -230,7 +230,7 @@ module.exports = function (app) {
           for (let modelResult in results) {
             let htmlResult = {};
             for (let prop in modelResult) {
-              htmlResult[mapToHtml[prop]] = modelResult[prop];
+              if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = modelResult[prop];
             }
             htmlResults.push(htmlResult);
           }
