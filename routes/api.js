@@ -229,11 +229,12 @@ module.exports = function (app) {
           
           // Testing block
           let htmlResult = {}
-          console.log("model result: ", results[0])
-          for (let prop in results[0]) {
-            if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = results[0][prop];
-          }
-          console.log(htmlResult)
+          
+          // for (let prop in results[0]) {
+          //   if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = results[0][prop];
+          // }
+          // console.log("model result: ", results[0])
+          console.log("htmlResult: ", htmlResult)
           
           
           
