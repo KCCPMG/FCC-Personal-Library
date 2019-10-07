@@ -217,13 +217,25 @@ module.exports = function (app) {
           searchObj[mapToModel[prop]] = req.body.prop;
         }
       }
+      
     
     
       // for (req.body)
     
       Issue.find(searchObj, function(err, results){
         if (err) console.log(err);
-        else res.json(results);
+        else {
+          var htmlResults = [];
+          console.log(results[0])
+          for (let modelResult in results) {
+            let htmlResult = {};
+            for (let prop in modelResult) {
+              htmlResult[mapToHtml[prop]] = modelResult[prop];
+            }
+            htmlResults.push(htmlResult);
+          }
+          res.json(htmlResults);
+        }
       })
     
 
