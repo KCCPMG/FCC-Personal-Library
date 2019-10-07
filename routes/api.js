@@ -192,6 +192,9 @@ module.exports = function (app) {
       var statusText = req.body.status_text;
       var toClose = req.body.open;
     
+    
+      for (req.body)
+    
       Issue.find()
     
 
