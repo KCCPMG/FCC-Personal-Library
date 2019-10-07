@@ -226,16 +226,26 @@ module.exports = function (app) {
         if (err) console.log(err);
         else {
           var htmlResults = [];
+          
+          // Testing block
+          let htmlResult = {}
           console.log("model result: ", results[0])
-          for (let modelResult in results) {
-            let htmlResult = {};
-            for (let prop in modelResult) {
-              if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = modelResult[prop];
-            }
-            htmlResults.push(htmlResult);
+          for (let prop in results[0]) {
+            if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = results[0][prop];
           }
-          console.log("htmlResult: ", htmlResults[0])
-          res.json(htmlResults);
+          console.log(htmlResult)
+          
+          
+          
+          // for (let modelResult in results) {
+          //   let htmlResult = {};
+          //   for (let prop in modelResult) {
+          //     if (mapToHtml[prop] !== undefined) htmlResult[mapToHtml[prop]] = modelResult[prop];
+          //   }
+          //   htmlResults.push(htmlResult);
+          // }
+          // console.log("htmlResult: ", htmlResults[0])
+          // res.json(htmlResults);
         }
       })
     
