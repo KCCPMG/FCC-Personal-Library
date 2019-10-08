@@ -132,7 +132,7 @@ module.exports = function (app) {
             if (assignedTo) issue.assignedTo = assignedTo;
             if (statusText) issue.statusText = statusText;
             if (toClose) issue.open = false;
-            var updated
+            
             if (!title && !text && !createdBy && !assignedTo && !statusText && !toClose) {
               res.send('no updated field sent');
             } else {
@@ -198,7 +198,8 @@ module.exports = function (app) {
         created_by: "createdBy",
         assigned_to: "assignedTo",
         status_text: "statusText",
-        open: "open"
+        open: "open",
+        updated_on: "updatedOn",
       }
       
       var mapToHtml = {
@@ -208,7 +209,8 @@ module.exports = function (app) {
         createdBy: "created_by",
         assignedTo: "assigned_to",
         statusText: "status_text",
-        open: "open"
+        open: "open",
+        updatedOn: "updated_on"
       }
       
       var searchObj = {};
@@ -260,7 +262,7 @@ module.exports = function (app) {
             }
             htmlResults.push(htmlResult);
           }
-          console.log("htmlResult: ", htmlResults[0])
+          // console.log("htmlResult: ", htmlResults[0])
           res.json(htmlResults);
         }
       })
