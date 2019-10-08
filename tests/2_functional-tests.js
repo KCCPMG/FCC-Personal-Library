@@ -216,16 +216,25 @@ suite('Functional Tests', function() {
       test('No _id', function(done) {
         chai.request(server)
           .delete('/api/issues/test')
-          .send({
-            _id: "5d9b8afedf0fc608d4d1a27b"
-          })
+          .send({})
           .end(function(err, res) {
-            
+            assert.equal(res.status, 200);
+            assert.equal(res.text, "_id error")
+            done();
           })
       });
       
       test('Valid _id', function(done) {
-        
+        chai.request(server)
+          .delete('/api/issues/test')
+          .send({
+            _id: "5d9b8b1612b5ff090b2e0576"
+          })
+          .end(function(err, res) {
+            assert.equal(res.status, 200);
+            assert.equal(res.text, "deleted 5d9b8b1612b5ff090b2e0576");
+            done();
+          })
       });
       
     });
