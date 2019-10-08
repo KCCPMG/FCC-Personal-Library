@@ -217,9 +217,11 @@ suite('Functional Tests', function() {
         chai.request(server)
           .delete('/api/issues/test')
           .send({
+            _id: "5d9b8afedf0fc608d4d1a27b"
+          })
+          .end(function(err, res) {
             
           })
-        
       });
       
       test('Valid _id', function(done) {
