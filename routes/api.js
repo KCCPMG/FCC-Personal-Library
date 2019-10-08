@@ -196,6 +196,7 @@ module.exports = function (app) {
         issue_title: "title",
         issue_text: "text",
         created_by: "createdBy",
+        created_on: "createdOn",
         assigned_to: "assignedTo",
         status_text: "statusText",
         open: "open",
@@ -207,6 +208,7 @@ module.exports = function (app) {
         title: "issue_title",
         text: "issue_text",
         createdBy: "created_by",
+        createdOn: "created_on",
         assignedTo: "assigned_to",
         statusText: "status_text",
         open: "open",
@@ -220,17 +222,12 @@ module.exports = function (app) {
           searchObj[mapToModel[prop]] = req.body.prop;
         }
       }
-      console.log("Search object :", searchObj);
-    
-    
-      // for (req.body)
+      // console.log("Search object :", searchObj);
+
     
       Issue.find(searchObj, function(err, results){
         if (err) console.log(err);
         else {
-          
-          
-          
           
           // Testing block
           // console.log(results.length);
